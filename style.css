@@ -1,21 +1,57 @@
 body {
     font-family: Arial, sans-serif;
+    background: url('https://wp.sfdcdigital.com/en-us/wp-content/uploads/sites/4/2025/05/footer-background.webp') no-repeat center center fixed;
+    background-size: cover;
+    color: #333;
     text-align: center;
     padding: 40px;
 }
 
 #quiz-container {
     max-width: 600px;
+    background-color: #ffffffcc;
+    padding: 30px;
+    border-radius: 15px;
     margin: auto;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
 button {
-    padding: 10px 20px;
-    font-size: 16px;
-    margin: 5px;
+    padding: 15px 25px;
+    font-size: 18px;
+    margin: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    background-color: #00a1e0;
+    color: white;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background-color: #007acc;
 }
 
 button.selected {
-    background-color: #4CAF50;
+    background-color: #003d99;
     color: white;
+}
+
+#timer {
+    font-size: 24px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.clock {
+    width: 100px;
+    height: 100px;
+    margin: 20px auto;
+    border: 8px solid #00a1e0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    color: #007acc;
 }
