@@ -1,9 +1,8 @@
 const questions = [
     { q: "What is the capital of India?", options: ["Delhi", "Mumbai", "Chennai", "Kolkata"], answer: 0 },
-    { q: "2 + 2 equals?", options: ["3", "4", "5", "2"], answer: 1 },
-    { q: "Which planet is known as the Red Planet?", options: ["Earth", "Mars", "Jupiter", "Venus"], answer: 1 },
-    { q: "What is H2O?", options: ["Oxygen", "Hydrogen", "Water", "Salt"], answer: 2 },
-    { q: "What is the opposite of Hot?", options: ["Warm", "Cold", "Freezing", "Cool"], answer: 1 }
+    { q: "What is the opposite of Hot?", options: ["Warm", "Cold", "Freezing", "Cool"], answer: 1 },
+	{ q: "What is the capital of India?", options: ["Delhi", "Mumbai", "Chennai", "Kolkata"], answer: 0 },
+    { q: "Which planet is known as the Red Planet?", options: ["Earth", "Mars", "Jupiter", "Venus"], answer: 1 }
 ];
 
 let currentQuestion = 0;
@@ -31,7 +30,7 @@ function showQuestion() {
     timeLeft = 10;
     selectedAnswer = null;
 
-    container.innerHTML = `<h3>${qObj.q}</h3><div id='options'></div><p>Time left: <span id='timer'>10</span> seconds</p>`;
+    container.innerHTML = `<h3>${qObj.q}</h3><div id='options'></div>`;
     const optionsContainer = document.getElementById('options');
 
     qObj.options.forEach((opt, index) => {
@@ -39,15 +38,16 @@ function showQuestion() {
         btn.innerText = opt;
         btn.onclick = () => {
             selectedAnswer = index;
-            // Highlight selected button
             document.querySelectorAll('#options button').forEach(b => b.classList.remove('selected'));
             btn.classList.add('selected');
         };
         optionsContainer.appendChild(btn);
     });
 
+    updateClockDisplay(10);
+
     timerInterval = setInterval(() => {
-        document.getElementById('timer').innerText = timeLeft;
+        updateClockDisplay(timeLeft);
         timeLeft--;
         if (timeLeft < 0) {
             clearInterval(timerInterval);
@@ -57,15 +57,19 @@ function showQuestion() {
             currentQuestion++;
             showQuestion();
         }
-    }, 1000);
+    }, 400);
+}
+
+function updateClockDisplay(time) {
+    document.getElementById('clock-hand').innerText = time;
 }
 
 function saveResult() {
-    document.getElementById('question-container').innerHTML = `
+    document.getElementById('quiz-container').innerHTML = `
         <h2>Quiz Completed!</h2>
         <p><strong>${userName}</strong>, your score: ${score} out of ${questions.length}</p>
         <div style="width: 80%; background-color: #ddd; margin: auto; padding: 5px; border-radius: 5px;">
-            <div style="width: ${(score / questions.length) * 100}%; background-color: #4CAF50; height: 24px; border-radius: 5px;"></div>
+            <div style="width: ${(score / questions.length) * 100}%; background-color: #00a1e0; height: 24px; border-radius: 5px;"></div>
         </div>
     `;
 
@@ -75,7 +79,7 @@ function saveResult() {
         timestamp: new Date().toISOString()
     };
 
-    fetch('https://docs.google.com/spreadsheets/d/1jH_ufNFrOku_zAQh0-5PM13K841GsryxE-Bew44rJYo/edit?gid=0#gid=0', {
+    fetch('https://sheet.best/api/sheets/YOUR_SHEET_ID', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
