@@ -1,19 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Career Carnival Quiz</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div id="quiz-container">
         <h2>Welcome to the Career Carnival 2025 - Salesforce Quiz</h2>
-        <div id="question-container"></div>
-        <div class="clock" id="clock-hand">10</div>
-        <button id="start-btn">Start Quiz</button>
+        <div id="registration-form">
+            <input type="text" id="name-input" placeholder="Your Name" required><br><br>
+            <input type="email" id="email-input" placeholder="Your Email" required><br><br>
+            <button id="register-btn">Start Quiz</button>
+        </div>
+        <div id="question-container" style="display: none;"></div>
+		<div id="options" style="display: none;"></div>
+        <div class="clock" id="clock-hand" style="display: none;">10</div>
+        <div id="top-winners"></div>
     </div>
 
     <script src="Quiz.js"></script>
 </body>
+
 </html>
