@@ -1,7 +1,14 @@
 const questions = [
-    { q: "What is the capital of India?", options: ["Delhi", "Mumbai", "Chennai", "Kolkata"], answer: 0 },
-    { q: "2 + 2 equals?", options: ["3", "4", "5", "2"], answer: 1 },
-    { q: "What is the opposite of Hot?", options: ["Warm", "Cold", "Freezing", "Cool"], answer: 1 }
+    { q: "Which feature of Salesforce Einstein recommends the best next steps for sales reps?", options: ["Einstein Discovery", "Next Best Action", "Einstein Vision", "Einstein Bots"], answer: 1 },
+	{ q: "Who is the father of cloud computing?", options: ["Sharon B. Codd", "Edgar Frank Codd", "J.C.R. Licklider", "Charles Bachman"], answer: 2 },
+	{ q: "Which Salesforce feature provides AI-powered chatbots for customer support?", options: ["Einstein Bots", "Flow Builder", "Omni-Channel", "Lightning Knowledge"], answer: 0 },
+	{ q: "What is one benefit of using AI in sales?", options: ["Slower response time", "Manual data entry", "Personalized recommendations", "Fewer customer insights"], answer: 2 },
+	{ q: "Arvind Krishna is ---th CEO of IBM", options: ["11th", "10th", "12th", "8th"], answer: 1 },
+	{ q: "Which technology helps AI recognize objects in images?", options: ["Image Recognition", "Blockchain", "Neural Networks", "Natural Language Processing (NLP)"], answer: 0 },
+	{ q: "Which of the following is not a type of cloud server?", options: ["Public Cloud Servers", "Private Cloud Servers", "Dedicated Cloud Servers", "Merged Cloud Servers"], answer: 3 },
+	{ q: "What language is used to write custom logic in Salesforce?", options: ["Java", "Python", "Apex", "SQL"], answer: 2 },
+	{ q: "What is the term for the practice of renting computing resources over the internet?", options: ["Cloud computing", "Virtualization", "On-premises hosting", "Cloud services"], answer: 0 },
+	{ q: "Which company created Einstein AI for CRM?", options: ["Microsoft", "Google", "Amazon", "Salesforce"], answer: 3 }
 ];
 
 let currentQuestion = 0;
@@ -29,14 +36,33 @@ document.getElementById('register-btn').addEventListener('click', () => {
     document.getElementById('clock-hand').style.display = 'block';
     document.getElementById('options').style.display = 'block';
 
-    showQuestion();
+    waitForAdminStart();
 });
+
+function waitForAdminStart() {
+    const messageContainer = document.getElementById('question-container');
+    messageContainer.innerHTML = `<h3>Waiting for Admin to start the quiz...</h3>`;
+
+    const interval = setInterval(() => {
+        fetch('https://api.sheetbest.com/sheets/1cb8e9bb-87e6-4c4b-8e26-b7e24b41d7b7')
+            .then(response => response.json())
+            .then(data => {
+                if (data[0].quizStarted === 'TRUE') {
+                    clearInterval(interval);
+                    showQuestion();
+                }
+            });
+    }, 1000);
+}
+
 
 function showQuestion() {
     if (currentQuestion >= questions.length) {
         saveResult();
         return;
     }
+	
+	clearInterval(timerInterval);
 
     const qObj = questions[currentQuestion];
     timeLeft = 10;
@@ -97,7 +123,6 @@ function saveResult() {
     document.getElementById('quiz-container').innerHTML = `
         <h2>Quiz Completed!</h2>
         <p><strong>${userName}</strong> (${userEmail}), your score: ${score} out of ${questions.length}</p>
-        <p>Total Time Taken (Correct Answers Only): ${totalTimeTaken.toFixed(3)} seconds</p>
         <div style="width: 80%; background-color: #ddd; margin: auto; padding: 5px; border-radius: 5px;">
             <div style="width: ${(score / questions.length) * 100}%; background-color: #00a1e0; height: 24px; border-radius: 5px;"></div>
         </div>
