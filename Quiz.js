@@ -1,14 +1,14 @@
 const questions = [
-    { q: "Which feature of Salesforce Einstein recommends the best next steps for sales reps?", options: ["Einstein Discovery", "Next Best Action", "Einstein Vision", "Einstein Bots"], answer: 1 },
-	{ q: "Who is the father of cloud computing?", options: ["Sharon B. Codd", "Edgar Frank Codd", "J.C.R. Licklider", "Charles Bachman"], answer: 2 },
-	{ q: "Which Salesforce feature provides AI-powered chatbots for customer support?", options: ["Einstein Bots", "Flow Builder", "Omni-Channel", "Lightning Knowledge"], answer: 0 },
-	{ q: "What is one benefit of using AI in sales?", options: ["Slower response time", "Manual data entry", "Personalized recommendations", "Fewer customer insights"], answer: 2 },
-	{ q: "Arvind Krishna is ---th CEO of IBM", options: ["11th", "10th", "12th", "8th"], answer: 1 },
-	{ q: "Which technology helps AI recognize objects in images?", options: ["Image Recognition", "Blockchain", "Neural Networks", "Natural Language Processing (NLP)"], answer: 0 },
-	{ q: "Which of the following is not a type of cloud server?", options: ["Public Cloud Servers", "Private Cloud Servers", "Dedicated Cloud Servers", "Merged Cloud Servers"], answer: 3 },
-	{ q: "What language is used to write custom logic in Salesforce?", options: ["Java", "Python", "Apex", "SQL"], answer: 2 },
-	{ q: "What is the term for the practice of renting computing resources over the internet?", options: ["Cloud computing", "Virtualization", "On-premises hosting", "Cloud services"], answer: 0 },
-	{ q: "Which company created Einstein AI for CRM?", options: ["Microsoft", "Google", "Amazon", "Salesforce"], answer: 3 }
+    { q: "Who is first IBM Consulting Chairman?", options: ["John Granger", "Arvind Krishna", "Mark Foster", "Kelly Chambliss"], answer: 2 },
+	{ q: "Which cloud service model provides the highest level of control and customization for users?", options: ["Infrastructure as a Service (IaaS)", "Platform as a Service (PaaS)", "Function as a Service (FaaS)", "Software as a Service (SaaS)"], answer: 0 },
+	{ q: "What is Salesforce’s real-time data platform called (formerly known as CDP)?", options: ["Snowflake", "Genie", "Pulse", "Hub"], answer: 1 },
+	{ q: "Which Salesforce product enables communication and collaboration across teams?", options: ["Zoom", "Meet", "Chatter", "Slack"], answer: 3 },
+	{ q: "What is the term for a cloud deployment model that involves a combination of public and private cloud services?", options: ["Multi-cloud", "Hybrid cloud", "Community cloud", "Distributed cloud"], answer: 1 },
+	{ q: "What is the name of IBM’s AI platform designed to understand, reason, and learn?", options: ["Azure", "Einstein", "Watson", "Bard"], answer: 2 },
+	{ q: "Select the incorrect primitive data type.", options: ["DateTime", "Date", "Base32", "Email"], answer: 2 },
+	{ q: "What Salesforce tool is used to integrate external systems?", options: ["Fusion", "Mulesoft", "Kafka", "Bridge"], answer: 1 },
+	{ q: "Which Salesforce acquisition is a data visualization platform?", options: ["Slack", "Tableau", "Asana", "Mulesoft"], answer: 1 },
+	{ q: "Which of the following is a standard Profile?", options: ["Read only", "Marketing Director", "Partner Portal User", "Standard Administrator"], answer: 0 }
 ];
 
 let currentQuestion = 0;
